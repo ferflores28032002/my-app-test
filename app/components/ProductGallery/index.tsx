@@ -12,12 +12,11 @@ interface ProductGalleryProps {
   onPageChange: (page: number) => void;
 }
 
-export const ProductGallery = memo(function ProductGallery({
-  products,
-  currentPage,
-  totalPages,
-  onPageChange,
-}: ProductGalleryProps) {
+export const ProductGallery = memo(function ProductGallery(
+  props: ProductGalleryProps
+) {
+  const { products, currentPage, totalPages, onPageChange } = props;
+
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -37,14 +36,20 @@ export const ProductGallery = memo(function ProductGallery({
             </div>
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2 truncate">
-                {product.desc}
+                {product.desc || "N/A"}
               </h3>
               <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">
-                Brand: {product.brand}
+                Brand: {product.brand || "N/A"}
               </p>
+
               <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">
                 Price: {product.price || "N/A"}
               </p>
+              {product.variety && (
+                <p className="text-sm text-gray-700 dark:text-gray-400 mb-2">
+                  Variety: {product.variety.join(", ") || "N/A"}
+                </p>
+              )}
               <span
                 className={`px-2 py-1 rounded-full text-xs ${
                   product.status_active
