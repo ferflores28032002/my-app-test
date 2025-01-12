@@ -1,8 +1,7 @@
 import { ApiResponse } from "../types";
 
-export const API_URL = "https://hiresprintcanvas.dreamhosters.com";
-export const API_TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoieGFkQnVpbGRlciIsImlhdCI6MTczNjY5NDcyMywiZXhwIjoxNzM2NzIzNTIzfQ.cZOL9B5rhdlxV4E7ijecwUoTrUblLQ1Sx3V6-VOPPDI";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
 
 export async function fetchProducts(): Promise<ApiResponse> {
   try {
